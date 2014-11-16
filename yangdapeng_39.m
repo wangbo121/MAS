@@ -77,9 +77,17 @@ time = 1:1:loop_tick;
 figure;
 plot(time,ksi1_matrix(1,:),'r',time,ksi2_matrix(1,:),'g',time,ksi3_matrix(1,:),'b',time,ksi4_matrix(1,:),'c',time,ksi5_matrix(1,:),'m',time,ksi6_matrix(1,:),'k');
 
+figure;
+plot(time,ksi1_matrix(2,:),'r',time,ksi2_matrix(2,:),'g',time,ksi3_matrix(2,:),'b',time,ksi4_matrix(2,:),'c',time,ksi5_matrix(2,:),'m',time,ksi6_matrix(2,:),'k');
+
+figure;
+plot(time,ksi1_matrix(3,:),'r',time,ksi2_matrix(3,:),'g',time,ksi3_matrix(3,:),'b',time,ksi4_matrix(3,:),'c',time,ksi5_matrix(3,:),'m',time,ksi6_matrix(3,:),'k');
+
+figure;
+plot(time,ksi1_matrix(4,:),'r',time,ksi2_matrix(4,:),'g',time,ksi3_matrix(4,:),'b',time,ksi4_matrix(4,:),'c',time,ksi5_matrix(4,:),'m',time,ksi6_matrix(4,:),'k');
 
 
-
+%虽然仿真结果不错，但是只是说明了这个公式能够使得系统收敛，控制u=k*v，但是如果u是输入受限制的呢，控制肯定不可能是无穷的呀
 
 
 
