@@ -1,3 +1,6 @@
+% ksi是2维的状态向量
+
+
 clear;
 close all;
 clc;

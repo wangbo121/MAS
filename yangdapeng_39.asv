@@ -1,3 +1,6 @@
+% ksi是2维的状态向量
+
+
 clear;
 close all;
 clc;
@@ -104,13 +107,15 @@ for i = 1:1:loop_tick
     temp = [ ksi4_matrix(3,i);ksi4_matrix(4,i)];
     u4(i) = K * temp; %20171116 切记matlab默认是行向量，所以u1是个行向量
     
-    temp = [ ksi1_matrix(3,i);ksi1_matrix(4,i)];
+    temp = [ ksi5_matrix(3,i);ksi5_matrix(4,i)];
     u5(i) = K * temp; %20171116 切记matlab默认是行向量，所以u1是个行向量
     
-    temp = [ ksi1_matrix(3,i);ksi1_matrix(4,i)];
-    u1(i) = K * temp; %20171116 切记matlab默认是行向量，所以u1是个行向量
+    temp = [ ksi6_matrix(3,i);ksi6_matrix(4,i)];
+    u6(i) = K * temp; %20171116 切记matlab默认是行向量，所以u1是个行向量
 end
 
+figure;
+plot(time,u1,'r',time,u2,'g',time,u3,'b',time,u4,'c',time,u5,'m',time,u6,'k');
 
 
 
