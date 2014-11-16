@@ -58,7 +58,7 @@ for i = 1:1:loop_tick
     func_trig1 = norm(error_1) - c1 * exp( - i*delta_time);
     if func_trig1 > 0        
         ksi1_trig = ksi1_next;
-        trig1_tick(i) = 1; 
+        trig1_tick(i) = i; 
     end
     
     %***************************************
@@ -154,15 +154,30 @@ figure;
 plot(time,ksi1_matrix(1,:),'r',time,ksi2_matrix(1,:),'g',time,ksi3_matrix(1,:),'b',time,ksi4_matrix(1,:),'c',time,ksi5_matrix(1,:),'m',time,ksi6_matrix(1,:),'k');
 
 figure;
+subplot(3, 2, 1);
+plot(time, threshold, 'r', time, error1_matrix, 'g');
+subplot(3, 2, 2);
+plot(time, threshold, 'r', time, error1_matrix, 'g');
+subplot(3, 2, 1);
+plot(time, threshold, 'r', time, error1_matrix, 'g');
+subplot(3, 2, 1);
+plot(time, threshold, 'r', time, error1_matrix, 'g');
+subplot(3, 2, 1);
+plot(time, threshold, 'r', time, error1_matrix, 'g');
+subplot(3, 2, 1);
 plot(time, threshold, 'r', time, error1_matrix, 'g');
 
 
-
 figure;
-scatter(time, trig1_tick, 1, 'o');
-legend('trig1_tick');
-xlabel('time(s)');
+trig1_tick_ordinate = ones(1,loop_tick);% ×Ý×ø±êÎ»ÖÃ
+scatter(trig1_tick, trig1_tick_ordinate, 8, 'r', 'x');
+legend('trig1\_tick');
+xlabel('time(0.01s)');
 axis([-inf inf -1.5 4]);
+
+% hold on;
+% temp = zeros(1,loop_tick)+3;
+% plot(time, temp, 'k', 'LineWidth',5);
 
 
 

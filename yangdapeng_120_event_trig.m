@@ -47,6 +47,11 @@ coefficient = -1;
 
 % trig1_tick;% 状态变量1触发时刻
 trig1_tick = zeros(1,loop_tick);
+trig2_tick = zeros(1,loop_tick);
+trig3_tick = zeros(1,loop_tick);
+trig4_tick = zeros(1,loop_tick);
+trig5_tick = zeros(1,loop_tick);
+trig6_tick = zeros(1,loop_tick);
 
 for i = 1:1:loop_tick
     %***************************************
@@ -70,6 +75,7 @@ for i = 1:1:loop_tick
     func_trig2 = norm(error_2) - c1 * exp( - i*delta_time);
     if func_trig2 > 0        
         ksi2_trig = ksi2_next;
+        trig2_tick(i) = i; 
     end
     
     %***************************************
@@ -81,6 +87,7 @@ for i = 1:1:loop_tick
     func_trig3 = norm(error_3) - c1 * exp( - i*delta_time);
     if func_trig3 > 0        
         ksi3_trig = ksi3_next;
+        trig3_tick(i) = i; 
     end
     
     
@@ -93,6 +100,7 @@ for i = 1:1:loop_tick
     func_trig4 = norm(error_4) - c1 * exp( - i*delta_time);
     if func_trig4 > 0        
         ksi4_trig = ksi4_next;
+        trig4_tick(i) = i; 
     end
     
     %***************************************
@@ -104,6 +112,7 @@ for i = 1:1:loop_tick
     func_trig5 = norm(error_5) - c1 * exp( - i*delta_time);
     if func_trig5 > 0        
         ksi5_trig = ksi5_next;
+        trig5_tick(i) = i; 
     end
     
     %***************************************
@@ -115,6 +124,7 @@ for i = 1:1:loop_tick
     func_trig6 = norm(error_6) - c1 * exp( - i*delta_time);
     if func_trig6 > 0        
         ksi6_trig = ksi6_next;
+        trig6_tick(i) = i; 
     end
 
     
@@ -154,16 +164,42 @@ figure;
 plot(time,ksi1_matrix(1,:),'r',time,ksi2_matrix(1,:),'g',time,ksi3_matrix(1,:),'b',time,ksi4_matrix(1,:),'c',time,ksi5_matrix(1,:),'m',time,ksi6_matrix(1,:),'k');
 
 figure;
-plot(time, threshold, 'r', time, error1_matrix, 'g');
-
+subplot(3, 2, 1);
+plot(time, threshold, 'r', time, error1_matrix, 'r');
+subplot(3, 2, 2);
+plot(time, threshold, 'r', time, error2_matrix, 'g');
+subplot(3, 2, 3);
+plot(time, threshold, 'r', time, error3_matrix, 'b');
+subplot(3, 2, 4);
+plot(time, threshold, 'r', time, error4_matrix, 'c');
+subplot(3, 2, 5);
+plot(time, threshold, 'r', time, error5_matrix, 'm');
+subplot(3, 2, 6);
+plot(time, threshold, 'r', time, error6_matrix, 'k');
 
 
 figure;
 trig1_tick_ordinate = ones(1,loop_tick);% 纵坐标位置
 scatter(trig1_tick, trig1_tick_ordinate, 8, 'r', 'x');
-legend('trig1\_tick');
+hold on;
+trig2_tick_ordinate = ones(1,loop_tick) + 1;% 纵坐标位置
+scatter(trig2_tick, trig2_tick_ordinate, 8, 'g', 'x');
+hold on;
+trig3_tick_ordinate = ones(1,loop_tick) + 2;% 纵坐标位置
+scatter(trig3_tick, trig3_tick_ordinate, 8, 'b', 'x');
+hold on;
+trig4_tick_ordinate = ones(1,loop_tick) + 3;% 纵坐标位置
+scatter(trig4_tick, trig4_tick_ordinate, 8, 'c', 'x');
+hold on;
+trig5_tick_ordinate = ones(1,loop_tick) + 4;% 纵坐标位置
+scatter(trig5_tick, trig5_tick_ordinate, 8, 'm', 'x');
+hold on;
+trig6_tick_ordinate = ones(1,loop_tick) + 5;% 纵坐标位置
+scatter(trig6_tick, trig6_tick_ordinate, 8, 'k', 'x');
+
+legend('trig1\_tick', 'trig2\_tick', 'trig3\_tick', 'trig4\_tick', 'trig5\_tick', 'trig6\_tick');
 xlabel('time(0.01s)');
-axis([-inf inf -1.5 4]);
+axis([-inf inf -0.5 8]);
 
 % hold on;
 % temp = zeros(1,loop_tick)+3;
