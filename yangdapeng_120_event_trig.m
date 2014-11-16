@@ -45,6 +45,9 @@ error_6 = zeros(1,2)';
 c1 = 1.1;
 coefficient = -1;
 
+% trig1_tick;% 状态变量1触发时刻
+trig1_tick = zeros(1,loop_tick);
+
 for i = 1:1:loop_tick
     %***************************************
     %***************
@@ -55,6 +58,7 @@ for i = 1:1:loop_tick
     func_trig1 = norm(error_1) - c1 * exp( - i*delta_time);
     if func_trig1 > 0        
         ksi1_trig = ksi1_next;
+        trig1_tick(i) = i; 
     end
     
     %***************************************
@@ -152,6 +156,18 @@ plot(time,ksi1_matrix(1,:),'r',time,ksi2_matrix(1,:),'g',time,ksi3_matrix(1,:),'
 figure;
 plot(time, threshold, 'r', time, error1_matrix, 'g');
 
+
+
+figure;
+trig1_tick_ordinate = ones(1,loop_tick);% 纵坐标位置
+scatter(trig1_tick, trig1_tick_ordinate, 8, 'r', 'x');
+legend('trig1\_tick');
+xlabel('time(0.01s)');
+axis([-inf inf -1.5 4]);
+
+% hold on;
+% temp = zeros(1,loop_tick)+3;
+% plot(time, temp, 'k', 'LineWidth',5);
 
 
 

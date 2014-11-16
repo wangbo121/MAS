@@ -18,7 +18,7 @@ L = [
 % delta_time = 1;
 delta_time = 0.01;% 0.01 表示每次迭代一次的时间间隔是0.01秒钟，也就是控制频率是100hz，这个频率在实际无人机等控制中是可行而且经常用的
 total_time_s = 100;% 仿真的时间长度，100秒
-total_time_s = 1;
+% total_time_s = 1;
 loop_tick = total_time_s/delta_time;% 循环的总步数
 
 ksi1 = [0.4 0.3]';
@@ -45,6 +45,9 @@ error_6 = zeros(1,2)';
 c1 = 1.1;
 coefficient = -1;
 
+% trig1_tick;% 状态变量1触发时刻
+trig1_tick = zeros(1,loop_tick);
+
 for i = 1:1:loop_tick
     %***************************************
     %***************
@@ -55,6 +58,7 @@ for i = 1:1:loop_tick
     func_trig1 = norm(error_1) - c1 * exp( - i*delta_time);
     if func_trig1 > 0        
         ksi1_trig = ksi1_next;
+        trig1_tick(i) = 1; 
     end
     
     %***************************************
@@ -138,7 +142,7 @@ for i = 1:1:loop_tick
     ksi6_matrix(:,i) = ksi6;
     error6_matrix(i) = norm(error_6);
     
-    threshold(i) = c1 * exp( i*delta_time);
+    threshold(i) = c1 * exp( - i*delta_time);
     
     
  
@@ -152,6 +156,13 @@ plot(time,ksi1_matrix(1,:),'r',time,ksi2_matrix(1,:),'g',time,ksi3_matrix(1,:),'
 figure;
 plot(time, threshold, 'r', time, error1_matrix, 'g');
 
+
+
+figure;
+scatter(time, trig1_tick, 1, 'o');
+legend('trig1_tick');
+xlabel('time(s)');
+axis([-inf inf -1.5 4]);
 
 
 
