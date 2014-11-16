@@ -42,8 +42,10 @@ error_4 = zeros(1,2)';
 error_5 = zeros(1,2)';
 error_6 = zeros(1,2)';
 
-c1 = 1.1;
+c1 = 1.1;% 耦合增益 这个在满足一定条件下怎么最优选择呢 
 coefficient = -1;
+exp_alpha = 0.9;% 这个是触发阈值的指数函数的衰减速率 这个在满足一定条件下怎么最优选择呢
+% exp_alpha = 2.1;% 如果这个alpha选择过大 不合适，收敛速度会加快，但是也会频繁引起事件触发
 
 % trig1_tick;% 状态变量1触发时刻
 trig1_tick = zeros(1,loop_tick);
@@ -60,7 +62,7 @@ for i = 1:1:loop_tick
     ksi1_next = ( coefficient * (   L(1,1) * (ksi1 + error_1) + L(1,2) * (ksi2 + error_2) + L(1,3) * (ksi3 + error_3) + ...
                                     L(1,4) * (ksi4 + error_4) + L(1,5) * (ksi5 + error_5) + L(1,6) * (ksi6 + error_6)  )  ) * delta_time + ksi1;   
 
-    func_trig1 = norm(error_1) - c1 * exp( - i*delta_time);
+    func_trig1 = norm(error_1) - c1 * exp( - exp_alpha * (i*delta_time) );
     if func_trig1 > 0        
         ksi1_trig = ksi1_next;
         trig1_tick(i) = i; 
@@ -72,7 +74,7 @@ for i = 1:1:loop_tick
     ksi2_next = ( coefficient * (   L(2,1) * (ksi1 + error_1) + L(2,2) * (ksi2 + error_2) + L(2,3) * (ksi3 + error_3) + ...
                                     L(2,4) * (ksi4 + error_4) + L(2,5) * (ksi5 + error_5) + L(2,6) * (ksi6 + error_6)  )  ) * delta_time + ksi2;   
 
-    func_trig2 = norm(error_2) - c1 * exp( - i*delta_time);
+    func_trig2 = norm(error_2) - c1 * exp( - exp_alpha * (i*delta_time) );
     if func_trig2 > 0        
         ksi2_trig = ksi2_next;
         trig2_tick(i) = i; 
@@ -84,7 +86,7 @@ for i = 1:1:loop_tick
     ksi3_next = ( coefficient * (   L(3,1) * (ksi1 + error_1) + L(3,2) * (ksi2 + error_2) + L(3,3) * (ksi3 + error_3) + ...
                                     L(3,4) * (ksi4 + error_4) + L(3,5) * (ksi5 + error_5) + L(3,6) * (ksi6 + error_6)  )  ) * delta_time + ksi3;   
 
-    func_trig3 = norm(error_3) - c1 * exp( - i*delta_time);
+    func_trig3 = norm(error_3) - c1 * exp( - exp_alpha * (i*delta_time) );
     if func_trig3 > 0        
         ksi3_trig = ksi3_next;
         trig3_tick(i) = i; 
@@ -97,7 +99,7 @@ for i = 1:1:loop_tick
     ksi4_next = ( coefficient * (   L(4,1) * (ksi1 + error_1) + L(4,2) * (ksi2 + error_2) + L(4,3) * (ksi3 + error_3) + ...
                                     L(4,4) * (ksi4 + error_4) + L(4,5) * (ksi5 + error_5) + L(4,6) * (ksi6 + error_6)  )  ) * delta_time + ksi4;   
 
-    func_trig4 = norm(error_4) - c1 * exp( - i*delta_time);
+    func_trig4 = norm(error_4) - c1 * exp( - exp_alpha * (i*delta_time) );
     if func_trig4 > 0        
         ksi4_trig = ksi4_next;
         trig4_tick(i) = i; 
@@ -109,7 +111,7 @@ for i = 1:1:loop_tick
     ksi5_next = ( coefficient * (   L(5,1) * (ksi1 + error_1) + L(5,2) * (ksi2 + error_2) + L(5,3) * (ksi3 + error_3) + ...
                                     L(5,4) * (ksi4 + error_4) + L(5,5) * (ksi5 + error_5) + L(5,6) * (ksi6 + error_6)  )  ) * delta_time + ksi5;   
 
-    func_trig5 = norm(error_5) - c1 * exp( - i*delta_time);
+    func_trig5 = norm(error_5) - c1 * exp( - exp_alpha * (i*delta_time) );
     if func_trig5 > 0        
         ksi5_trig = ksi5_next;
         trig5_tick(i) = i; 
@@ -121,7 +123,7 @@ for i = 1:1:loop_tick
     ksi6_next = ( coefficient * (   L(6,1) * (ksi1 + error_1) + L(6,2) * (ksi2 + error_2) + L(6,3) * (ksi3 + error_3) + ...
                                     L(6,4) * (ksi4 + error_4) + L(6,5) * (ksi5 + error_5) + L(6,6) * (ksi6 + error_6)  )  ) * delta_time + ksi6;   
 
-    func_trig6 = norm(error_6) - c1 * exp( - i*delta_time);
+    func_trig6 = norm(error_6) - c1 * exp( - exp_alpha * (i*delta_time) );
     if func_trig6 > 0        
         ksi6_trig = ksi6_next;
         trig6_tick(i) = i; 
