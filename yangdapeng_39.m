@@ -89,8 +89,30 @@ plot(time,ksi1_matrix(4,:),'r',time,ksi2_matrix(4,:),'g',time,ksi3_matrix(4,:),'
 
 %虽然仿真结果不错，但是只是说明了这个公式能够使得系统收敛，控制u=k*v，但是如果u是输入受限制的呢，控制肯定不可能是无穷的呀
 
+for i = 1:1:loop_tick
+    
+    %temp = [ ksi1_matrix(3,i) ksi1_matrix(4,i)];
+    temp = [ ksi1_matrix(3,i);ksi1_matrix(4,i)];
+    u1(i) = K * temp; %20171116 切记matlab默认是行向量，所以u1是个行向量
+    
+    temp = [ ksi2_matrix(3,i);ksi2_matrix(4,i)];
+    u2(i) = K * temp; %20171116 切记matlab默认是行向量，所以u1是个行向量
+    
+    temp = [ ksi3_matrix(3,i);ksi3_matrix(4,i)];
+    u3(i) = K * temp; %20171116 切记matlab默认是行向量，所以u1是个行向量
+    
+    temp = [ ksi4_matrix(3,i);ksi4_matrix(4,i)];
+    u4(i) = K * temp; %20171116 切记matlab默认是行向量，所以u1是个行向量
+    
+    temp = [ ksi5_matrix(3,i);ksi5_matrix(4,i)];
+    u5(i) = K * temp; %20171116 切记matlab默认是行向量，所以u1是个行向量
+    
+    temp = [ ksi6_matrix(3,i);ksi6_matrix(4,i)];
+    u6(i) = K * temp; %20171116 切记matlab默认是行向量，所以u1是个行向量
+end
 
-
+figure;
+plot(time,u1,'r',time,u2,'g',time,u3,'b',time,u4,'c',time,u5,'m',time,u6,'k');
 
 
 
