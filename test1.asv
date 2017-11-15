@@ -1,0 +1,26 @@
+for i = 2:2:12
+    ksi(i)=0.2*i;
+end
+
+
+for i = 1:2:11
+    ksi(i)=0.2*i-0.1;
+end
+
+ksi=ksi';
+
+
+test_matrix = [
+               -1.5    1.5    0    0    0    0 ;
+               2        -2    0    0    0    0;
+               0.9     0      -2.8 0    1.9    0;
+               0        1.2    0    -2.5    0    1.3;
+               0        0    1.4    1.8    -3.2    0;
+               0        0    0    0    0.7    -0.7;
+              ]
+laplacian = - test_matrix;
+
+delta_time = 1;
+
+for i = 1:1:50
+end
